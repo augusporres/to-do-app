@@ -9,7 +9,8 @@ class App extends Component {
             title: '',
             description: '',
             tasks: [],
-            _id: ''
+            _id: '',
+            buttonText: 'Send'
         }
         this.addTask = this.addTask.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -25,7 +26,7 @@ class App extends Component {
             .then(res => {
                 console.log(res.data)
                 M.toast({html: 'Task Updated'});
-                this.setState({title: '', description: '', _id: ''});
+                this.setState({title: '', description: '', _id: '', buttonText: 'Send'});
                 this.getTasks();
             })
         } else {
@@ -63,7 +64,8 @@ class App extends Component {
                 this.setState({
                     title: res.data.title,
                     description: res.data.description,
-                    _id: res.data._id
+                    _id: res.data._id,
+                    buttonText: 'Edit'
                 })
             })
     }
@@ -100,7 +102,7 @@ class App extends Component {
                                             </div>
                                         </div>
                                         <button className='btn light-blue darken-4' type='submit'>
-                                            Send
+                                            {this.state.buttonText}
                                         </button>
                                     </form>
                                 </div>
